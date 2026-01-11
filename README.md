@@ -137,11 +137,21 @@ The static site will be generated in the `build` directory.
 
 ## Deployment
 
-The app is configured for GitHub Pages deployment:
+The app is configured for GitHub Pages deployment with both automatic and manual options:
 
+### Automatic Deployment
 1. Push to the `main` branch
 2. GitHub Actions will automatically build and deploy
 3. Access your app at `https://yourusername.github.io/fantasy_stonks/`
+
+### Manual Deployment
+1. Go to the **Actions** tab in your GitHub repository
+2. Select **Deploy to GitHub Pages** from the workflows list
+3. Click **Run workflow** button
+4. Choose the deployment environment (production/preview)
+5. Click **Run workflow** to start the deployment
+
+This is useful when you want to deploy without pushing to main, or redeploy the current code.
 
 Note: Update the `base` path in `svelte.config.js` if your repository name differs.
 

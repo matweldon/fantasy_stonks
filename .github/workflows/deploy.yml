@@ -1,9 +1,24 @@
+# Deploy to GitHub Pages
+#
+# Automatic: Runs on push to main branch
+# Manual: Go to Actions tab → Deploy to GitHub Pages → Run workflow
+#         You can choose the deployment environment (production/preview)
+#
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: ['main']
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: false
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - preview
 
 permissions:
   contents: read
@@ -30,7 +45,9 @@ jobs:
         run: bun install
 
       - name: Build
-        run: bun run build
+        run: |
+          echo "Building for environment: ${{ github.event.inputs.environment || 'production' }}"
+          bun run build
         env:
           NODE_ENV: production
 
